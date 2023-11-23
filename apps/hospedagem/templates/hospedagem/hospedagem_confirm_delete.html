@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block center %}
+<form method="post">{% csrf_token %}
+    <p>Confirmar a exclusão de "{{ object }}"?</p>
+    {{ form }}
+    <input type="submit" value="Confirm">
+</form>
+{% endblock %}

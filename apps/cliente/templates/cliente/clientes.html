@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+  <div class="row" style="display: flex; justify-content: space-between; margin: 0.5rem;">
+    <h2> Lista de Clientes</h2>
+  
+    <a href="{% url 'cliente_urls:cliente_criar' %}" class="btn btn-success mb-3">Novo Cadastro</a>
+  </div>
+
+  <form method="get" style="margin-bottom: 2rem;">
+  
+    <div class="row">
+
+      <div class="col-md-4   mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          {{ form.nome }}
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+
+  </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Nome</th> 
+        <th style="width: 30%;">E-mail</th>   
+        <th style="width: 40%;">Ações</th>    
+      </tr>
+    </thead>
+    <tbody>
+      {% for cliente in clientes %}  
+      <tr>
+        <td> <a href="{% url 'cliente_urls:cliente_detalhar' id=cliente.id %}"> {{ cliente.nome }} </a></td>
+        <td>{{ cliente.email }}</td>
+        <td>
+          <a href="{% url 'cliente_urls:cliente_editar' id=cliente.id %}"" class="btn btn-info btn-sm">Editar</a>
+          <span style="margin-right: 5px;"></span> 
+          <a href="{% url 'cliente_urls:cliente_remover' id=cliente.id %}"" class="btn btn-danger btn-sm">Remover</a>
+        </td>
+      </tr>
+      {% endfor %}
+    
+    </tbody>
+  </table>
+  {% include 'pagination.html' %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block center %}
+  <a href="{% url 'quarto_urls:quarto_listar' %}" class="btn btn-success mb-3">Voltar</a>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Apartamento</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ quarto.apartamento }}</td>
+        <td>{{ quarto.valor }}</td>
+
+      </tr>
+    
+    </tbody>
+  </table>
+{% endblock %}

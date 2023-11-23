@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+    <div class="row" style="display: flex; justify-content: space-between; margin: 0.5rem;">
+
+        <h2> Formulário de Quarto.</h2>
+    
+        <a href="{% url 'quarto_urls:quarto_listar' %}" class="btn btn-primary mb-3">Voltar</a>
+
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="apartamento" class="form-label">Apartamento</label>
+            {{ form.apartamento }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="valor" class="form-label">Valor</label>
+            {{ form.valor }}
+        </div>
+        
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </form>    
+{% endblock %}
+   

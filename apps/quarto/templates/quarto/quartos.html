@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+  <div class="row" style="display: flex; justify-content: space-between; margin: 0.5rem;">
+    <h2> Lista de Quartos</h2>
+  
+    <a href="{% url 'quarto_urls:quarto_criar' %}" class="btn btn-success mb-3">Novo Cadastro</a>
+  </div>
+
+  <form method="get" style="margin-bottom: 2rem;">
+  
+    <div class="row">
+
+      <div class="col-md-4   mb-3">
+          <label for="apartamento" class="form-label">Apartamento</label>
+          {{ form.apartamento }}
+      </div>
+
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+
+  </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Apartamento</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for quarto in quartos %}  
+      <tr>
+        <td> <a href="{% url 'quarto_urls:quarto_detalhar' id=quarto.id %}"> {{ quarto.apartamento }} </a></td>
+        <td>
+          <a href="{% url 'quarto_urls:quarto_editar' id=quarto.id %}"" class="btn btn-info btn-sm">Editar</a>
+          <a href="{% url 'quarto_urls:quarto_remover' id=quarto.id %}"" class="btn btn-danger btn-sm">Remover</a>
+        </td>
+      </tr>
+      {% endfor %}
+    
+    </tbody>
+  </table>
+  {% include 'pagination.html' %}
+
+{% endblock %}
